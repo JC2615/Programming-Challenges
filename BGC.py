@@ -1,4 +1,4 @@
-def conversion():
+def dToB():
     dec = int(input("Enter a decimal number to be converted into binary: "))
     binary = []
     quotient = 0
@@ -14,6 +14,14 @@ def conversion():
     for num in binary:
         print(num, end = '')
 
+def bToD():
+    binary = input("\nEnter a binary number to be converted into decimal: ")
+    binary = [int(i) for i in binary]
+    binary.reverse()
+    decimal = 0
+    for i in range(len(binary)):
+        decimal += (binary[i] * (2**i))
+    print(decimal)
 
-
-conversion()
+dToB()
+bToD()
