@@ -1,7 +1,5 @@
 #Decimal to binary function
-def dToB():
-    dec = int(input("Enter a decimal number to be converted into binary: "))
-
+def dToB(dec):
     #Instantiate a list to store the binary numbers
     binary = []
 
@@ -14,22 +12,26 @@ def dToB():
         quotient = dec // 2
         base2 = dec % 2
         dec = quotient
-        binary.append(base2)
+        binary.append(str(base2))
         if quotient==0:
             break
     
     #Reverses list because the remainders have to be written in reverse order from when they were found to be correct
     binary.reverse()
 
+    if len(binary) < 4:
+        for _ in range(4 - len(binary)):
+            binary.insert(0, "0")
+
     #Prints the binary representation
-    for num in binary:
-        print(num, end = '')
+    s = ""
+    
+    return s.join(binary)
 
 #Binary to decimal function
-def bToD():
-    binary = input("\nEnter a binary number to be converted into decimal: ")
-    
+def bToD(binary):
     #Makes each bit an item in a list in order to multiply its position by its respective power of 2
+    binary = str(binary)
     binary = [int(i) for i in binary]
 
     #Reverses list of bits because it makes it easier for the upcoming loop
@@ -43,8 +45,19 @@ def bToD():
         decimal += (binary[i] * (2**i))
 
     #Prints the decimal representation of the entered binary number
-    print(decimal)
+    return decimal
+
+def hToB(hexadecimal):
+    hexadecimal = [i for i in hexadecimal]
+
+    binary = ""
+    conversion = {"0":dToB(0), "1":dToB(1), "2":dToB(2), "3":dToB(3), "4":dToB(4), "5": dToB(5), "6":dToB(6), "7":dToB(7), "8":dToB(8), "9":dToB(9), "A":dToB(10), "B":dToB(11), "C":dToB(12), "D":dToB(13), "E":dToB(14), "F":dToB(15)}
+    for num in hexadecimal:
+        binary += str(conversion[num])
+
+    return binary
 
 #Calls functions
-dToB()
-bToD()
+#print(dToB(7))
+#print(0)
+print(hToB("555ABC070"))
